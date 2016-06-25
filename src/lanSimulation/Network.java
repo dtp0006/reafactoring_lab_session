@@ -315,7 +315,6 @@ Therefore #receiver sends a packet across the token ring network, until either
  			return false;
  		}
  	}
- 
 
 	/**
 Return a printable representation of #receiver.
