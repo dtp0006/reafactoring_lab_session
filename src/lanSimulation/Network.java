@@ -368,7 +368,26 @@ Write an XML representation of #receiver on the given #buf.
 		buf.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<network>");
 		do {
 			buf.append("\n\t");
-			typeNode(currentNode,buf);
+			switch (currentNode.type_) {
+			case Node.NODE:
+				buf.append("<node>");
+				buf.append(currentNode.name_);
+				buf.append("</node>");
+				break;
+			case Node.WORKSTATION:
+				buf.append("<workstation>");
+				buf.append(currentNode.name_);
+				buf.append("</workstation>");
+				break;
+			case Node.PRINTER:
+				buf.append("<printer>");
+				buf.append(currentNode.name_);
+				buf.append("</printer>");
+				break;
+			default:
+				buf.append("<unknown></unknown>");;
+				break;
+			};
 			currentNode = currentNode.nextNode_;
 		} while (currentNode != firstNode_);
 		buf.append("\n</network>");
@@ -377,24 +396,24 @@ Write an XML representation of #receiver on the given #buf.
 	private void typeNode(Node currentNode, StringBuffer buf){
 		switch (currentNode.type_) {
 		case Node.NODE:
-			buf.append("<node>");
+			buf.append("Node ");
 			buf.append(currentNode.name_);
-			buf.append("</node>");
+			buf.append(" [Node]");
 			break;
 		case Node.WORKSTATION:
-			buf.append("<workstation>");
+			buf.append("Workstation ");
 			buf.append(currentNode.name_);
-			buf.append("</workstation>");
+			buf.append(" [Workstation]");
 			break;
 		case Node.PRINTER:
-			buf.append("<printer>");
+			buf.append("Printer ");
 			buf.append(currentNode.name_);
-			buf.append("</printer>");
+			buf.append(" [Printer]");
 			break;
 		default:
-			buf.append("<unknown></unknown>");;
+			buf.append("(Unexpected)");;
 			break;
-		};
+		};		
 	
 	}
 
