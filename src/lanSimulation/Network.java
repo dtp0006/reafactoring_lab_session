@@ -285,7 +285,7 @@ Write a printable representation of #receiver on the given #buf.
 		assert isInitialized();
 		Node currentNode = firstNode_;
 		do {
-			currentNode.printOn(this, buf);
+			currentNode.printOn(buf);
 			buf.append(" -> ");
 			currentNode = currentNode.nextNode_;
 		} while (currentNode != firstNode_);
@@ -303,7 +303,7 @@ Write a HTML representation of #receiver on the given #buf.
 		buf.append("\n\n<UL>");
 		do {
 			buf.append("\n\t<LI> ");
-			currentNode.printOn(this, buf);
+			currentNode.printOn(buf);
 			buf.append(" </LI>");
 			currentNode = currentNode.nextNode_;
 		} while (currentNode != firstNode_);
@@ -320,7 +320,7 @@ Write an XML representation of #receiver on the given #buf.
 		buf.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<network>");
 		do {
 			buf.append("\n\t");
-			currentNode.printXMLOn(this, buf);
+			currentNode.printXMLOn(buf);
 			currentNode = currentNode.nextNode_;
 		} while (currentNode != firstNode_);
 		buf.append("\n</network>");
